@@ -11,7 +11,7 @@
 
     p{color: #333;}
     </style>
-    <title>Pomidorino Pizza </title>
+    <title>Pomidorino Pizza. </title>
 </head>
 <body class="grey lighten-4">
 <nav class="white z-depth-0">
