@@ -11,19 +11,19 @@ echo 'Email nieprawidlowy.';}
 
 if(empty($_POST['name'])){echo "Nie podales imienia.";}
 else{$name = $_POST['name'];
-	if (!(preg_match('/^[a-zA-Z\s]+$/',$name)));
+	if (!(preg_match('[a-zA-Z]',$name)));
 	else{echo 'Podano niepoprawne imie.';}}
 
 if(empty($_POST['title'])){
 	echo "Nie podales nazwy pizzy";}
 	else{$title = $_POST['title'];
-		if (!(preg_match('/^[a-zA-Z\s]+$/',$title)));
+		if (!(preg_match('[a-zA-Z]',$title)));
 		else{echo 'Podano niepoprawna nazwe pizzy.';}}
 
 if(empty($_POST['dodatki'])){
 	echo "Nie podales dodatkow";
 }else{$dodatki = $_POST['dodatki'];
-	if (!(preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/',$dodatki)));
+	if ((preg_match('#\G(?:[A-Za-z]+(?:\s*,\s*|$))+$#',$dodatki)));
 	else{echo 'Podano niepoprawny format dodatkow.';}}
 }
 ?>
