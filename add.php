@@ -10,10 +10,13 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
 $errors['email'] = 'Email nieprawidlowy.';}
 }
 
-if(empty($_POST['name'])){echo "Nie podales imienia.";}
+if(empty($_POST['name'])){
+	echo "Nie podales imienia";}
 else{$name = $_POST['name'];
 	if (!(preg_match('[a-zA-Z]',$name)));
-	else{$errors['name'] = 'Podano niepoprawne imie.';}}
+	else{$errors['name'] = 'Podano niepoprawne imie.';}
+}
+
 
 if(empty($_POST['title'])){
 	echo "Nie podales nazwy pizzy";}
@@ -26,6 +29,11 @@ if(empty($_POST['dodatki'])){
 }else{$dodatki = $_POST['dodatki'];
 	if ((preg_match('#\G(?:[A-Za-z]+(?:\s*,\s*|$))+$#',$dodatki)));
 	else{$errors['dodatki'] = 'Podano niepoprawny format dodatkow.';}}
+
+	if(array_filter($errors)){
+		 echo 'Bledy w formularzu.';
+	 }echo
+	 header('Location:congratulation.php');
 }
 ?>
 <!DOCTYPE html>
@@ -35,16 +43,16 @@ if(empty($_POST['dodatki'])){
 		<h4 class="center">Add a Pizza</h4>
 		<form class="white" action="add.php" method="POST">
 			<label>Twoj e-mail</label>
-			<input type="text" name="email" value="<?php echo $email ?>">
+			<input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
 			<label>Twoje imie</label>
 			<div class="red-text"><?php echo $errors['email']; ?></div>
-			<input type="text" name="name"value="<?php echo $name ?>">
+			<input type="text" name="name"value="<?php echo htmlspecialchars($name) ?>">
 			<div class="red-text"><?php echo $errors['name']; ?></div>
             <label>Nazwa pizzy</label>
-			<input type="text" name="title" value="<?php echo $title ?>">
+			<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
 			<div class="red-text"><?php echo $errors['title']; ?></div>
 			<label>Dodatki(oddzielone przecinkami) </label>
-			<input type="text" name="dodatki"value="<?php echo $dodatki ?>">
+			<input type="text" name="dodatki"value="<?php echo htmlspecialchars($dodatki) ?>">
 			<div class="red-text"><?php echo $errors['dodatki']; ?></div>
 			<div class="center">
 				<input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
