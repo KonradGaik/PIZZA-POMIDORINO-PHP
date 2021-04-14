@@ -17,7 +17,6 @@ else{$name = $_POST['name'];
 	else{$errors['name'] = 'Podano niepoprawne imie.';}
 }
 
-
 if(empty($_POST['title'])){
 	echo "Nie podales nazwy pizzy";}
 	else{$title = $_POST['title'];
@@ -32,8 +31,7 @@ if(empty($_POST['dodatki'])){
 
 	if(array_filter($errors)){
 		 echo 'Bledy w formularzu.';
-	 }else{	 header('Location:congratulation.php');}
-
+	 }else{	 header('Location:order.php');}
 }
 ?>
 <!DOCTYPE html>
