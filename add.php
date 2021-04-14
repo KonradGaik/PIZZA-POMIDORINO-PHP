@@ -32,30 +32,33 @@ if(empty($_POST['dodatki'])){
 
 	if(array_filter($errors)){
 		 echo 'Bledy w formularzu.';
-	 }echo
-	 header('Location:congratulation.php');
+	 }else{	 header('Location:congratulation.php');}
+
 }
 ?>
 <!DOCTYPE html>
 <html>
 <?php include ('templates/header.php'); ?>
 <section class="container grey-text">
-		<h4 class="center">Add a Pizza</h4>
+		<h4 class="center">Złóz zamowienie</h4>
 		<form class="white" action="add.php" method="POST">
-			<label>Twoj e-mail</label>
+			
 			<input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
-			<label>Twoje imie</label>
+			<label>Twoj e-mail</label>
 			<div class="red-text"><?php echo $errors['email']; ?></div>
 			<input type="text" name="name"value="<?php echo htmlspecialchars($name) ?>">
+			<label>Twoje imie</label>
 			<div class="red-text"><?php echo $errors['name']; ?></div>
-            <label>Nazwa pizzy</label>
+            
 			<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
 			<div class="red-text"><?php echo $errors['title']; ?></div>
-			<label>Dodatki(oddzielone przecinkami) </label>
+			<label>Nazwa pizzy</label>
+	
 			<input type="text" name="dodatki"value="<?php echo htmlspecialchars($dodatki) ?>">
 			<div class="red-text"><?php echo $errors['dodatki']; ?></div>
+			<label>Dodatki(oddzielone przecinkami) </label>
 			<div class="center">
-				<input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
+				<input type="submit" name="submit" value="Potwierdz" class="btn brand z-depth-0">
 			</div>
 		</form>
 	</section>
