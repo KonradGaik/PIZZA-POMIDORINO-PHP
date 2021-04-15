@@ -1,6 +1,8 @@
 <?php
-$title = $name = $dodatki = $email = '';
-$errors = array('email'=>'','name'=>'','title'=>'','dodatki'=>''); 
+include ('config/connect_db.php');
+
+$imie = $nazwa = $dodatki = $email = '';
+$errors = array('email'=>'','imie'=>'','nazwa'=>'','dodatki'=>''); 
 
 if(isset($_POST['submit'])){
 if(empty($_POST['email'])){
@@ -10,18 +12,18 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
 $errors['email'] = 'Email nieprawidlowy.';}
 }
 
-if(empty($_POST['name'])){
+if(empty($_POST['imie'])){
 	echo "Nie podales imienia";}
-else{$name = $_POST['name'];
-	if (!(preg_match('[a-zA-Z]',$name)));
-	else{$errors['name'] = 'Podano niepoprawne imie.';}
+else{$name = $_POST['imie'];
+	if (!(preg_match('[a-zA-Z]',$imie)));
+	else{$errors['imie'] = 'Podano niepoprawne imie.';}
 }
 
-if(empty($_POST['title'])){
+if(empty($_POST['nazwa'])){
 	echo "Nie podales nazwy pizzy";}
-	else{$title = $_POST['title'];
-		if (!(preg_match('[a-zA-Z]',$title)));
-		else{$errors['title']= 'Podano niepoprawna nazwe pizzy.';}}
+	else{$title = $_POST['nazwa'];
+		if (!(preg_match('[a-zA-Z]',$nazwa)));
+		else{$errors['nazwa']= 'Podano niepoprawna nazwe pizzy.';}}
 
 if(empty($_POST['dodatki'])){
 	echo "Nie podales dodatkow";
@@ -31,7 +33,17 @@ if(empty($_POST['dodatki'])){
 
 	if(array_filter($errors)){
 		 echo 'Bledy w formularzu.';
-	 }else{	 header('Location:order.php');}
+	 }else{	
+		$email = mysqli_real_escape_string($conn,$_POST['email']);
+		$nazwa = mysqli_real_escape_string($conn,$_POST['nazwa']);
+		$imie = mysqli_real_escape_string($conn,$_POST['imie']);
+		$dodatki = mysqli_real_escape_string($conn,$_POST['dodatki']);
+	
+		$sql = "INSERT INTO pizzas(email,nazwa,imie,dodatki) VALUES ('$email','$nazwa','$imie','$dodatki')";
+		if(mysqli_query($conn,$sql)){
+		header('Location:order.php');}
+else{echo 'query error: '. mysqli_error($conn);}
+	 }
 }
 ?>
 <!DOCTYPE html>
@@ -44,12 +56,12 @@ if(empty($_POST['dodatki'])){
 			<input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
 			<label>Twoj e-mail</label>
 			<div class="red-text"><?php echo $errors['email']; ?></div>
-			<input type="text" name="name"value="<?php echo htmlspecialchars($name) ?>">
+			<input type="text" name="imie"value="<?php echo htmlspecialchars($imie) ?>">
 			<label>Twoje imie</label>
-			<div class="red-text"><?php echo $errors['name']; ?></div>
+			<div class="red-text"><?php echo $errors['imie']; ?></div>
             
-			<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
-			<div class="red-text"><?php echo $errors['title']; ?></div>
+			<input type="text" name="nazwa" value="<?php echo htmlspecialchars($nazwa) ?>">
+			<div class="red-text"><?php echo $errors['nazwa']; ?></div>
 			<label>Nazwa pizzy</label>
 	
 			<input type="text" name="dodatki"value="<?php echo htmlspecialchars($dodatki) ?>">
