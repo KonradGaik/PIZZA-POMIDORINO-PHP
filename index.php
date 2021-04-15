@@ -7,7 +7,6 @@ $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -28,14 +27,11 @@ mysqli_close($conn);
 <?php endforeach; ?>
 </div>
 <div class="card-action center">
-<a href="#" class="brand-text">Wiecej informacji</a>
+<a  class="brand-text" href="details.php?id=<?php echo $pizza['id'] ?>">Szczegoly</a>
 </div>
 </div>
 </div>
 <?php  endforeach;  ?>
-
-
-
 </div>
 </div> 
 
