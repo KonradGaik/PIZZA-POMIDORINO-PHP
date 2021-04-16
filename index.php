@@ -32,8 +32,10 @@ mysqli_close($conn);
 </div>
 </div>
 <?php  endforeach;  ?>
+
 </div>
 </div> 
-
+<div class="center"><?php if((count($pizzas)>=2)){echo 'Liczba zamówień jest wieksza niz dwa.';}
+else{echo 'Liczba zamówień jest mniejsza lub rowna dwa.';} ?> </div>
 <?php include ('templates/footer.php') ?>
 </html>
