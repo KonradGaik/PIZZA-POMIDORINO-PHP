@@ -5,8 +5,9 @@ if(isset($_POST['delete'])){
 $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
 $sql = "DELETE FROM pizzas WHERE id = $id_to_delete";
 if(mysqli_query($conn, $sql)){
-header:('Location: index.php');}
-else{echo 'Blad usuwania:'. mysqli_error($conn);}
+    header('Location: index.php');}
+else {echo 'Blad usuwania:'. mysqli_error($conn);}
+
 }
 
 if(isset($_GET['id'])){
@@ -25,8 +26,7 @@ if(isset($_GET['id'])){
 
 <h4 class="center">Szczegóły:</h4></br>
 <div class="container center">
-<?php if($pizza): ?>
- 
+ <?php if (!empty($pizza)): ?>
 <p> Stworzone przez: <?php echo htmlspecialchars($pizza['email']); ?></p>
 <p>Imie: <?php echo htmlspecialchars($pizza['imie']); ?></p>
 <p>Nazwa pizzy: <?php echo htmlspecialchars($pizza['nazwa']);?></p>
@@ -36,8 +36,9 @@ if(isset($_GET['id'])){
 <form action="details.php" method="POST">
 <input type="hidden" name="id_to_delete" value="<?php echo $pizza['id']; ?>">
 <input type="submit" name="delete" value="Usuń" class="btn brand z-depth-0"></form>
-<?php else: ?><h5> Pizza nie istnieje </h5> 
-<?php endif; ?>
+
+<?php else: ?> <h5> Pizza nie istnieje </h5> 
+<?php endif ?>
 </div>
 <?php include ('templates/footer.php'); ?>
 
