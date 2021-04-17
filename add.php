@@ -45,13 +45,15 @@ if(empty($_POST['dodatki'])){
 else{echo 'query error: '. mysqli_error($conn);}
 	 }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <?php include ('templates/header.php'); ?>
 <section class="container grey-text">
 		<h4 class="center">Złóz zamowienie</h4>
-		<form class="white" action="add.php" method="POST">
+		<form class="white" action=<?php echo $_SERVER['PHP_SELF'] ?> method="POST">
 			
 			<input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
 			<label>Twoj e-mail</label>
