@@ -1,16 +1,15 @@
-<?php 
-include ('config/connect_db.php');
-$login=$haslo='';
-$errors= array('login'=>'','haslo'=>'');
-if(!empty($_POST['login']) && (!empty($_POST['haslo']))){
-echo $_POST['login'];
-echo $_POST['haslo'];}
+<?php
 
-if($_POST['submit']){
+$haslo = $login = '';
+
+if(isset($_POST['submit'])){
 session_start();
+
 $_SESSION['login'] = $_POST['login'];
-header('Location:index.php');
+
+header('Location: index.php');
 }
+
 
 ?>
 <html>
@@ -19,11 +18,12 @@ header('Location:index.php');
 <?php include ('templates/header.php'); ?>
 
 <h1>Logowanie</h1>
-<form class="white" action="login.php" method="POST">
+<form class="white" action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 <input type="text" name="login" value="<?php echo htmlspecialchars($login)?>">
 <label>Login:</label>
 <input type="text" name="haslo" value="<?php echo htmlspecialchars($haslo)?>">
-<label>Haslo:</label> </br> </br> 
+<label>Haslo:</label> </br> </br>
+
 <input type="submit" name="submit" value="Zaloguj" class="btn brand z-depth-0 ">
 </form>
 <?php include ('templates/footer.php'); ?>
