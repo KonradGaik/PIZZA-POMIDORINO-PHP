@@ -1,0 +1,7 @@
+.pizza {background-image: url('pizza.jpg');
+        height: 50vh;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size:cover;
+}

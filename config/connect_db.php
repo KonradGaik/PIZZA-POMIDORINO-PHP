@@ -10,8 +10,8 @@
 	'database_type' => 'mysql',
 	'database_name' => 'name',
 	'server' => 'localhost',
-	'username' => 'your_username',
-	'password' => 'XD',
+	'username' => 'root',
+	'password' => '',
  
 	// [optional]
 	'charset' => 'utf8mb4',

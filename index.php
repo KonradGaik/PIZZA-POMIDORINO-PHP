@@ -10,10 +10,11 @@ mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-
+<link rel="stylesheet" href="style.css">
 <?php include ('templates/header.php') ?>
 
-<h4 class="center grey-text"> PIZZERIA</h4>
+
+<div class="pizza"><h4 class="center grey-text"> PIZZERIA</h4></div>
 <div class="container">
 <div class="row">
 
