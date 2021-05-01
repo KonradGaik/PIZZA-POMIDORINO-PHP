@@ -1,11 +1,11 @@
 <?php
 include ('config/connect_db.php');
-
-$sql = 'SELECT nazwa, imie, id, dodatki, created_at, email FROM pizzas ORDER BY created_at ';
-$result= mysqli_query($conn,$sql);
-$pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
-mysqli_free_result($result);
-mysqli_close($conn);
+// 
+$sql = $database->query("SELECT nazwa, imie, id, dodatki, created_at, email FROM pizzas ORDER BY created_at ")->fetchAll(PDO::FETCH_ASSOC);
+// $result= $database->query("mysqli_query($database,$sql)");
+// $pizzas = $database->query("mysqli_fetch_all($result, MYSQLI_ASSOC);");
+// $database->query("mysqli_free_result($result)");    
+//query("mysqli_close($conn)");
 
 ?>
 <!DOCTYPE html>

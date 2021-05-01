@@ -1,6 +1,7 @@
 <?php
 namespace Medoo;
 
+
 use PDO;
 use Exception;
 use PDOException;
